@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Code Lookup</title>
+    <style>
+        body {
+            font-family: 'Palatino', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #d0d0d0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+        }
+
+        header {
+            background-color: #599d5b;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            width: 100%;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .subheading {
+            width: 100%;
+            background-color: #a7baa7;
+            padding: 1px;
+            text-align: center;
+            margin: 1px auto;
+        }
+
+        #countries {
+            width: 100%;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        div {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Country Code Lookup</h1>
+    </header>
+    <main>
+        <div class="subheading">
+            <h4>Lookup Country Codes</h4>
+        </div>
+        <div id="countries">
+            <label for="country-select">Select a Country:</label>
+            <select id="country-select"></select>
+
+            <div id="country-code-output"></div>
+        </div>
+    </main>
+
+    <script>
+        const countrySelect = document.getElementById("country-select");
+        const countryCodeOutput = document.getElementById("country-code-output");
+
+        async function fetchCountryCodes() {
+            const url = 'https://date.nager.at/api/v2/AvailableCountries';
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch country codes: ${response.status}`);
+                }
+                const countries = await response.json();
+                displayCountries(countries);
+            } catch (error) {
+                console.error('Error loading country codes:', error);
+            }
+        }
+
+        function displayCountries(countries) {
+            countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.key.toLowerCase();
+                option.text = country.value;
+                countrySelect.appendChild(option);
+            });
+
+            displayCountryCode(countrySelect.value);
+
+            countrySelect.addEventListener("change", () => {
+                const selectedCountry = countrySelect.value;
+                displayCountryCode(selectedCountry);
+            });
+        }
+
+        function displayCountryCode(country) {
+            countryCodeOutput.textContent = '';
+
+            countryCodeOutput.textContent = `Country Code: ${country}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchCountryCodes);
+    </script>
+</body>
+</html>
