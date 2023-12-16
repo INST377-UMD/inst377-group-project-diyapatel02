@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Holiday Planner</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Palatino', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #d0d0d0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+        }
+
+        header {
+            background-color: #599d5b;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            width: 100%;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 20px auto;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .subheading {
+            width: 60%;
+            background-color: #a7baa7;
+            padding: 1px;
+            text-align: center;
+            margin: 1px auto;
+        }
+
+        form {
+            width: calc(50% - 10px);
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .examples {
+            width: calc(50% - 10px);
+            background-color: #f0f0f0;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        #holidays {
+            width: 100%;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #599d5b;
+            color: #fff;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th:last-child,
+        td:last-child {
+            border-right: 1px solid #ddd;
+        }
+
+        th:first-child,
+        td:first-child {
+            border-left: 1px solid #ddd;
+        }
+
+        tbody {
+            background-color: #f9f9f9;
+        }
+
+        #table-body {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        #holidayTypeChartContainer {
+            width: 400px;
+            height: 200px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Holiday Planner</h1>
+    </header>
+    <main>
+        <div class="subheading">
+            <h4>Enter a country code and the year to see their upcoming holidays!</h2>
+        </div>
+        <form id="holidayForm">
+            <label for="cc-input">Country Code:</label>
+            <input type="text" id="cc-input" required>
+            <br>
+            <label for="y-input">Year:</label>
+            <input type="text" id="y-input" required>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="examples">
+            <h4>Country Code Examples:</h4>
+            <ul>
+                <li>USA - United States</li>
+                <li>CAN - Canada</li>
+                <li>GBR - United Kingdom</li>
+                <li>AUS - Australia</li>
+                <li>DEU - Germany</li>
+            </ul>
+        </div>
+        <div id="holidays">
+            <h2>Upcoming Holidays</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+        <div id="holidayTypeChartContainer">
+            <h4>Types of Holidays Around the World</h4>
+            <canvas id="holidayTypeChart" width="400" height="200"></canvas>
+        </div>
+
+    </main>
+    <script>
+        const tableBody = document.getElementById("table-body");
+        const countryCodeInput = document.getElementById("cc-input");
+        const yearInput = document.getElementById("y-input");
+        const holidayForm = document.getElementById("holidayForm");
+
+        holidayForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            let countryCode = countryCodeInput.value;
+            let year = yearInput.value;
+            await getHolidayData(countryCode, year);
+        });
+
+        async function getHolidayData(countryCode, year) {
+            let apiKey = "GxQFhfX+35PbNoew0N/Y9Q==IF5srDwuQjEshCTG";
+            let options = {
+                method: "GET",
+                headers: {
+                    "X-Api-Key": 'GxQFhfX+35PbNoew0N/Y9Q==IF5srDwuQjEshCTG',
+                },
+            };
+            let url = `https://api.api-ninjas.com/v1/holidays?country=${countryCode}&year=${year}`;
+            try {
+                let response = await fetch(url, options);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                let result = await response.json();
+                console.log(result);
+                addRows(result);
+
+                updateHolidayTypeChart(result);
+            } catch (error) {
+                console.error('Error loading holidays:', error);
+            }
+        }
+
+        function addRows(result) {
+            result.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            tableBody.innerHTML = '';
+            for (let i = 0; i < result.length; i++) {
+                let row = tableBody.insertRow(i);
+                let dateCell = row.insertCell(0);
+                let dayCell = row.insertCell(1);
+                let nameCell = row.insertCell(2);
+                let typeCell = row.insertCell(3);
+
+                dateCell.innerHTML = result[i].date;
+                dayCell.innerHTML = result[i].day;
+                nameCell.innerHTML = result[i].name;
+                typeCell.innerHTML = result[i].type;
+            }
+        }
+
+        function updateHolidayTypeChart(data) {
+            const uniqueHolidayTypes = [...new Set(data.map(holiday => holiday.type))];
+
+            const randomColors = generateRandomColors(uniqueHolidayTypes.length);
+
+            const ctx = document.getElementById('holidayTypeChart').getContext('2d');
+
+            const holidayTypeChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: uniqueHolidayTypes,
+                    datasets: [{
+                        data: uniqueHolidayTypes.map(type => countOccurrences(data, type)),
+                        backgroundColor: randomColors,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: "Types of Holidays Around the World",
+                    },
+                },
+            });
+        }
+
+        function generateRandomColors(count) {
+            const colors = [];
+            for (let i = 0; i < count; i++) {
+                colors.push(`#${Math.floor(Math.random()*16777215).toString(16)}`);
+            }
+            return colors;
+        }
+
+        function countOccurrences(data, type) {
+            return data.filter(holiday => holiday.type === type).length;
+        }
+    </script>
+</body>
+
+</html>
