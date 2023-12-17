@@ -14,3 +14,14 @@ experience however, we recommend user a computer and running it on the broswer.
 
 ## Developer Manual
 
+### Installation
+In order to install this project on your device the first step is to clone the repository onto your system using git clone 
+and then copying and pasting the code link on this repository. 
+
+Next, change the directory into the project directory using cd and and pasting the name of the project
+
+Next install the dependencies using npm install
+
+### Running the Application
+
+### API Information
