@@ -103,7 +103,7 @@ The server provides the following API endpoint:
         Example: GET /v1/holidays?country=USA&year=2023
 
 ### API
-Our system solves this information problem by allowing users to select their country and provides a list of upcoming public holidays in that country. We  used the public API provided by https://date.nager.at/ to retrieve the necessary holiday data. This provided access to holiday information and allow users to plan their activities more efficiently.We have chosen to work with the https://date.nager.at/ API because it offers a comprehensive and up-to-date database of public holiday information for multiple countries. It does not require authentication, which makes it easier to integrate into our application.
+Our system solves this information problem by allowing users to select their country and provides a list of upcoming public holidays in that country. We  used the public API provided by https://api-ninjas.com/api/holidays to retrieve the necessary holiday data. This provided access to holiday information and allow users to plan their activities more efficiently. We have chosen to work with the https://api-ninjas.com/api/holidays API because it offers a comprehensive and up-to-date database of public holiday information for multiple countries.
 
 Method used: GET
 
