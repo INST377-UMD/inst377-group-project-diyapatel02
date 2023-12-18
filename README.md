@@ -43,6 +43,15 @@ Next, change the directory into the project directory using cd and and pasting t
 Next install the dependencies using npm install
 
 ### Running the Application
+The project will be accessible at http://localhost:4000.
+
+Accessing the project:
+Open your web browser and go to http://localhost:4000.
+
+In order to run the application, the user just has to go to the country codes page and find the country code for the country
+they are looking for and then going back to the main page and typing the code, year, and clicking submit. After that, they will be presented
+with a table providing all the holidays in a given year. 
+
 
 ### API Information
 Our system will solve this information problem by allowing users to select their country and provide a list of 
@@ -52,3 +61,16 @@ their activities more efficiently.
 We have chosen to work with the https://date.nager.at/ API because it offers a comprehensive and 
 up-to-date database of public holiday information for multiple countries. 
 It does not require authentication, which makes it easier to integrate into our application.
+
+Method used: GET
+
+### Bugs
+At the moment there are no known bugs. 
+
+In the future, the project could be further expanded by incorporating more aspects of planning a vacation including: 
+
+1. Weather information
+
+2. Popular areas in a country to visit
+
+
