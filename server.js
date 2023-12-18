@@ -6,8 +6,16 @@ const port = 4000;
 
 app.use(express.static('public'));
 
-app.get('/index.html', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'about.html'));
+});
+
+app.get('/countries', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'countries.html'));
 });
 
 app.listen(port, () => {
