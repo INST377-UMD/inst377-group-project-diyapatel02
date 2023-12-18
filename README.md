@@ -1,7 +1,9 @@
 # Holiday Planner
 ## Contributors
 Diya Patel - Developer
+
 Dagmawe Aychiluhim - Developer
+
 Saatvik Gangavarapu - Developer
 
 ## Description
@@ -15,8 +17,11 @@ a comprehensive list of holidays and the type of holiday in a given year based o
  
 ### Stakeholders
 General Public → People who want to know when the next holidays are to plan their vacations or leisure activities.
+
 Businesses → Companies need to plan work schedules, inventory management, and promotional activities based on public holidays.
+
 Tourism Industry → Travel agencies and tourism businesses can use this information to offer holiday packages and attract tourists.
+
 Government → Local and national government bodies can benefit from this application for event planning and coordination.
 
 For the front end of our application, we plan to use HTML, CSS, and JavaScript. 
@@ -32,7 +37,9 @@ experience however, we recommend user a computer and running it on the broswer.
 ### Installation
 In order to install this project on your device the first step is to clone the repository onto your system using git clone 
 and then copying and pasting the code link on this repository. 
+
 Next, change the directory into the project directory using cd and and pasting the name of the project
+
 Next install the dependencies using npm install
 
 ### Running the Application
