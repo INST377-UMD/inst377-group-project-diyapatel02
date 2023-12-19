@@ -25,7 +25,7 @@ Tourism Industry → Travel agencies and tourism businesses can use this informa
 Government → Local and national government bodies can benefit from this application for event planning and coordination.
 
 
-## Target Browsers
+### Target Browsers
 
 This project is designed to be compatible with most web browsers. While it should work well with most major browsers, we recommend using the latest versions of the following:
 
@@ -47,6 +47,39 @@ The Holiday Planner is a web application that allows users to explore upcoming h
 1. Holiday Planner Home Page
 2. Country Code Page
 3. About Page
+
+### How to Use
+
+### Entering Country Code and Year
+
+1. Locate the "Country Code" input field in the form.
+2. Enter the desired country code (e.g., USA, CAN).
+3. Move to the "Year" input field and enter the year for which you want to view holidays.
+4. Click the "Submit" button to retrieve holiday information.
+
+### Viewing Upcoming Holidays
+
+After submitting the form, the application will display a table with the upcoming holidays for the specified country and year. The table includes columns for date, day, name, and type of holiday.
+
+### Country Code Examples
+
+Refer to the "Country Code Examples" section for a list of examples to use when entering country codes.
+
+### Tips and Recommendations
+
+- Double-check the entered country code for accuracy.
+- Ensure the year entered is valid.
+- Explore the "Country Codes" page for a list of country codes.
+
+### Troubleshooting
+
+If you encounter any issues while using the Holiday Planner, consider the following:
+
+- Verify your internet connection.
+- Check for any error messages in the browser console.
+- Refresh the page and try again.
+
+Happy holiday planning!
 
 ## Developer Manual
 ### Installation
