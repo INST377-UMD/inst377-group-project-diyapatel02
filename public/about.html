@@ -59,6 +59,13 @@
         p {
             line-height: 1.6;
         }
+        form {
+            width: calc(50% - 10px);
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -85,7 +92,7 @@
             <p>Holiday Planner is a web application designed to meet your holiday planning needs. With our platform, you can quickly find information about upcoming public holidays in your country. We provide a user-friendly interface for individuals to plan vacations and leisure activities effortlessly. For businesses, our platform supports efficient scheduling, inventory management, and promotional planning around public holidays. Additionally, we offer valuable insights to the tourism industry, enabling them to create attractive travel packages. Our platform is also a valuable tool for government bodies involved in event planning and coordination.</p>
         </section>
     </main>
-<form method="POST" action="/passenger" id="holidayForm" onsubmit="">
+    <form method="POST" action="/passenger" id="holidayForm" onsubmit="">
         <h2>Feedback</h2>
         <label for="name">Your Name:</label>
         <input type="text" id="cc-input" name="name" required></input>
@@ -96,8 +103,5 @@
         <br>
         <button type="submit">Submit</button>
     </form>
-</body>
-</html>
-
 </body>
 </html>

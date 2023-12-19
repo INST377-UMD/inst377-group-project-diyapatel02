@@ -11,14 +11,22 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
 
 app.get('/', (req, res) => {
+    res.sendFile('public/index.html', { root: __dirname })
+})
+
+app.get('/about', (req, res) => {
     res.sendFile('public/about.html', { root: __dirname })
+})
+
+app.get('/countries', (req, res) => {
+    res.sendFile('public/countries.html', { root: __dirname })
 })
 
 app.get('/passengers', async (req, res) => { //api
     console.log(`Getting Passengers`)
 
     const {data, error} = await supabase
-        .from('Passenger') 
+        .from('HolidayPassengers') 
         .select();
 
     if(error) {
@@ -40,13 +48,11 @@ app.post('/passenger', async (req, res) => { //api
     console.log(req.body.feedback)
 
     const {data, error} = await supabase
-        .from('passenger')
+        .from('HolidayPassengers')
         .insert([
             {
-                'firstName': firstName, 
+                'firstname': firstName, 
                 'feedback': feedback, 
-                // 'destinationDate': destinationDate,
-                // 'destination': destination
             }
         ]);
 
