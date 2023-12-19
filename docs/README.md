@@ -107,14 +107,14 @@ Make sure you have Node.js installed on your machine. If not, download and insta
     npm install
     node server.js
 
-This will start the server, and you should see a message indicating that the server is running at http://localhost:4000/index.html.
+This will start the server, and you should see a message indicating that the server is running at http://localhost:4000/.
 
 
 ### Running the Application
-The project will be accessible at http://localhost:4000/index.html.
+The project will be accessible at http://localhost:4000/.
 
 Accessing the project:
-Open your web browser and go to http://localhost:4000/index.html.
+Open your web browser and go to http://localhost:4000/.
 
 In order to run the application, the user just has to go to the country codes page and find the country code for the country
 they are looking for and then going back to the main page and typing the code, year, and clicking submit. After that, they will be presented
